@@ -116,7 +116,7 @@ def default_regression_model(num_values, num_anchors, pyramid_feature_size=256, 
             **options
         )(outputs)
 
-    outputs = keras.layers.SpatialDropout2D(rate=0.4, data_format=None)
+    outputs = keras.layers.Dropout(rate=0.4)
     outputs = keras.layers.Conv2D(num_anchors * num_values, name='pyramid_regression', **options)(outputs)
     if keras.backend.image_data_format() == 'channels_first':
         outputs = keras.layers.Permute((2, 3, 1), name='pyramid_regression_permute')(outputs)
