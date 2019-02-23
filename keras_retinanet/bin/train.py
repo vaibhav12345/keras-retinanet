@@ -123,6 +123,7 @@ def create_models(backbone_retinanet, num_classes, weights, multi_gpu=0,
     prediction_model = retinanet_bbox(model=model, anchor_params=anchor_params)
 
     # compile model
+    """
     training_model.compile(
         loss={
             'regression'    : losses.smooth_l1(),
@@ -130,6 +131,15 @@ def create_models(backbone_retinanet, num_classes, weights, multi_gpu=0,
         },
         optimizer=keras.optimizers.adam(lr=lr, clipnorm=0.001)
     )
+    """
+    training_model.compile(
+        loss={
+            'regression'    : losses.smooth_l1()
+        },
+        optimizer=keras.optimizers.adam(lr=lr, clipnorm=0.001)
+    )
+    
+    
 
     return model, training_model, prediction_model
 
