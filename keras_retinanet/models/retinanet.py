@@ -176,9 +176,15 @@ def default_submodels(num_classes, num_anchors):
     Returns
         A list of tuple, where the first element is the name of the submodel and the second element is the submodel itself.
     """
+    """
     return [
         ('regression', default_regression_model(4, num_anchors)),
         ('classification', default_classification_model(num_classes, num_anchors))
+    ]
+    """
+
+    return [
+        ('regression', default_regression_model(4, num_anchors))
     ]
 
 
